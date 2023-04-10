@@ -1,0 +1,123 @@
+1.AS
+ it alow us to create an alias for coloumn or result
+ex 
+i)SELECT  column AS new_name from table.
+ii) SELECT SUM (coloumn) AS new_name FROM table
+ example SELECT amount AS rental_price FROM payment;
+
+*The As operator gets executed at the vert end of a query 
+-----------------------------------------------------------------
+2.Join 
+   i.Join allow us to combine multiple tables together 
+	the main reason for the different join types is to decide how to deal	
+	with information only present in one of the joind tables. 
+
+   2i) Inner Join will result with the set of records that match in both tables
+
+	SYNTAX:
+		SELECT * FROM tableA INNER JOIN TableB ON TableA.col_match = 	TableB.col_match.
+	 
+   2ii)OUTER JOINs
+		There are few types of outer join They will allow us to specify 	how to deal with values only present in one of the tables being join. 
+	
+	a.FULL OUTER JOIN 
+	b.LEFT OUTER JOIN
+	c.RIGHT OUTER JOIN
+	
+	A> Full outer join: Grab everything wheather it is present in one table or in both table
+	ex.
+		SELECT * FROM TableA FULL OUTER JOIN TableB ON TableA.com_match = TableB.col_match
+	
+	B> left outer join
+		A LEFT OUTER JOIN results in the set of records that are in the left table, if there is no match with the right table, the results are null.
+
+--------------------------------------------------------------------------------
+3> UNION :-
+	• The UNION operator is used to combine
+	the result-set of two or more SELECT
+	statements.
+	• It basically serves to directly concatenate
+	two results together, essentially "pasting"
+	them together.
+
+	Syntax:
+			SELECT column_name(s) FROM table1
+			UNION
+			SELECT column_name(s) FROM table2;	
+
+
+----------------------------------------------------------------------------------					Timestamps and Extract
+					PART ONE
+			   DISPLAYING CURRENT TIME INFORMATION
+		
+O TIME - Contains only time
+○ DATE - Contains only date
+O TIMESTAMP - Contains date and time
+O TIMESTAMPTZ - Contains date,time,
+timezone
+
+
+
+• Let's explore functions and operations
+related to these specific data types:
+O TIMEZONE
+O NOW
+TIMEOFDAY
+o CURRENT_TIME
+o CURRENT_DATE
+
+• EXTRACT()
+o Allows you to "extract" or obtain a
+sub-component of a date value
+■ EXTRACT(YEAR FROM date_col)
+
+
+
+• AGE()
+o Calculates and returns the current age
+given a timestamp
+o Useage:
+■ AGE(date_col)
+o Returns
+13 years 1 mon 5 days 01:34:13.003423
+------------------------------------------------------------------------------
+. Mathematical Functions and Operators
+ Table 9.4. Mathematical Operators
+Operator Description Example Result
+o  + addition 2+3 5
+o - subtraction 2-3 -1
+o * multiplication 2 3 6
+o / division (integer division truncates the result) 4 / 2 2
+o % modulo (remainder) 5%4 1
+o ^ exponentiation (associates left to 	right) 2.0 3.0 8
+
+ex:- 1 SELECT rental_rate/replacement_cost FROM film
+------------------------------------------------------
+0:String Functions and Operations
+• PostgreSQL also provides a variety of string functions and operators that allow us to edit, combine,and alter text data columns.
+
+string concattination 
+syntax : string || String
+ex:- first_name || last_name = Achintkumar
+ex:- first_name || ' ' || last_name = Achint kumar
+-----------------------------------------------------
+			SubQuery
+
+o-It allows you to perform a query on another query
+  ex select student,grade FROM test_score Where grade >(select AVG(grade) from test_score)
+
+o- The EXIST operator is used to test for existence of rows in a subquery
+ Its opposit NON EXIST
+Ex:- Select first_name, last_name From customer where Exist(select *from payment where customer.customer_id = payment.customer_id AND amount > 11)
+--------------------------------------------------------
+			SELF JOIN
+o: A self-join is a query in which a table is joind to itself 
+:- Self joins are useful fro comparing values in column of rows whithin the same  table .
+The self join can be viewed as join of two copies of the same table.
+
+o:-its neccesary to use alias for self join to prevent same name conflict.
+
+ex:- SELECT tableA.col, tableB.com
+FROM table AS tableA join table AS tableB
+ON tableA.some_col = tableB.other_col
+------------------------------------------------------
